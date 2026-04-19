@@ -1,0 +1,68 @@
+.home-page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.page-layout {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 30px;
+}
+
+/* Сайдбар слева */
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: fit-content;
+}
+
+.sidebar h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+/* Основной контент */
+.content {
+  flex-grow: 1;
+}
+
+.product-summary {
+  margin-bottom: 20px;
+  margin-left: 0; /* Убираем любой автоматический отступ */
+  text-align: left; /* Выравниваем текст по левому краю */
+}
+
+.product-summary h2 {
+  color: #333;
+  font-size: 24px;
+  margin: 0;
+  padding-left: 0; /* Убираем внутренний отступ */
+
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+  gap: 20px;
+
+}
+
+.card-placeholder {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card-placeholder p {
+  margin: 10px 0;
+  color: #666;
+}
