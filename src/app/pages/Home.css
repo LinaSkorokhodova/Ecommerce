@@ -11,7 +11,16 @@
   gap: 30px;
 }
 
-/* Сайдбар слева */
+/* ===== САЙДБАР ===== */
+.left-sidebar-area {
+  width: 250px;
+  flex-shrink: 0; 
+  display: flex;
+  flex-direction: column; 
+  gap: 15px; 
+}
+
+/* Дизайн сайдбара  */
 .sidebar {
   width: 250px;
   flex-shrink: 0;
@@ -69,12 +78,24 @@
   background-color: #fff;
 }
 
+/* ===== Баннер Special Deal  ===== */
+.special-deal-banner {
+  width: 100%; 
+  padding: 20px; 
+  background-color: #ff4d4f;  
+  color: white;
+  border-radius: 8px; 
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+  margin-top: 20px;  /* Отступ сверху */
+}
   /* ===== PRICE RANGE: два поля в одну строку ===== */
 .price-inputs {
    display: flex;      
-  flex-direction: row; /* Направление: слева направо */
-  gap: 10px;           /* Отступ между полями */
-  width: 100%;         /* Занимаем всю ширину контейнера */
+  flex-direction: row; 
+  gap: 10px;           
+  width: 100%;         
 }
 
 .price-inputs input {
@@ -99,7 +120,7 @@
   background-color: #fff;
 }
 
-/* ===== КНОПКА: чёрная с белым текстом ===== */
+/* ===== КНОПКА APPLY: чёрная с белым текстом ===== */
 .apply-btn {
   width: 100%;
   padding: 12px 16px;
@@ -202,3 +223,5 @@ product-model {
   margin: 10px 0;
   color: #666;
 }
+
+

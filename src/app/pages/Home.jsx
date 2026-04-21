@@ -22,6 +22,9 @@ function Home() {
 
       <div className="page-layout">
 
+        {/* 1. Структура левой колонки */}
+        <div className="left-column"> 
+        
         {/* Левая колонка: Фильтры */}
         <aside className="sidebar">
           <h3>Filters</h3>
@@ -67,6 +70,15 @@ function Home() {
           <button className="apply-btn">Apply Filters</button>
         </aside>
 
+              {/* 2. Баннер Special Deal (отдельный блок под фильтрами) */}
+          <div className="special-deal-banner">
+            <h4> Special Deal</h4>
+            <p className="deal-timer">Offer expires in: <strong>0:59:59</strong></p>
+          </div>
+              
+              </div>
+        
+        
         {/* Правая колонка: Товары */}
         <main className="content">
           <div className="product-summary">
