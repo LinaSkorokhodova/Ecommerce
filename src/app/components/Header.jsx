@@ -3,7 +3,7 @@ import './Header.css'
 function Header() {
   return (
     <header className="header">
-      {/* ЛЕВАЯ ЧАСТЬ: Логотип и навигация */}
+      {/* Левая часть: Логотип и навигация */}
       <div className="header-left">
         <h1 className="logo">TechStore</h1>
         <nav className="header-nav">
@@ -13,7 +13,7 @@ function Header() {
         </nav>
       </div>
 
-      {/* ПРАВАЯ ЧАСТЬ: Иконки */}
+      {/* Правая часть: Иконки */}
       <div className="header-right">
         <button className="icon-btn">🛒</button>
         <button className="icon-btn">👤</button>

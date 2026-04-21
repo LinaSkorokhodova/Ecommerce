@@ -23,10 +23,146 @@
 }
 
 .sidebar h3 {
-  margin: 0 0 15px 0;
+  margin: 0 0 20px 0;
   color: #333;
   font-size: 18px;
+  font-weight: 600;
 }
+
+  /*Группа фильтров*/
+  .filter-group {
+  margin-bottom:20px;
+  }
+
+  .filter-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  }
+
+  /* ===== BRAND: пустой серый переключатель ===== */
+.filter-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #f5f5f5; 
+  color: #999;                
+  cursor: pointer;
+  appearance: none;           
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+  .filter-group select:focus {
+  outline: none;
+  border-color: #666;
+  background-color: #fff;
+}
+
+.filter-group select option {
+  color: #333;
+  background-color: #fff;
+}
+
+  /* ===== PRICE RANGE: два поля в одну строку ===== */
+.price-inputs {
+   display: flex;      
+  flex-direction: row; /* Направление: слева направо */
+  gap: 10px;           /* Отступ между полями */
+  width: 100%;         /* Занимаем всю ширину контейнера */
+}
+
+.price-inputs input {
+  flex: 1;             
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #f5f5f5;
+  color: #333;
+  min-width: 0;       
+}
+
+
+  .price-inputs input::placeholder {
+  color: #999;
+}
+
+.price-inputs input:focus {
+  outline: none;
+  border-color: #666;
+  background-color: #fff;
+}
+
+/* ===== КНОПКА: чёрная с белым текстом ===== */
+.apply-btn {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #000000;   /* Чёрный фон */
+  color: #ffffff;              /* Белый текст */
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.apply-btn:hover {
+  background-color: #333333;   /* Тёмно-серый при наведении */
+}
+.apply-btn:active {
+  transform: scale(0.98);
+}
+  /* ===== КАРТОЧКИ ТОВАРОВ ===== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+  .product-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  }
+
+  .product-brand {
+  margin: 0;
+  color: #999;                 /* Серый/приглушённый текст */
+  font-size: 14px;
+  font-weight: 400;
+}
+product-model {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+
+  /* Две строки товаров */
+  display: -webkit-box;
+  -line-clamp: 2;
+  -box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+  .product-price {
+  margin: 0;
+  color: #007bff;
+  font-size: 18px;
+  font-weight: 600;
+  }
 
 /* Основной контент */
 .content {
@@ -35,21 +171,21 @@
 
 .product-summary {
   margin-bottom: 20px;
-  margin-left: 0; /* Убираем любой автоматический отступ */
-  text-align: left; /* Выравниваем текст по левому краю */
+  margin-left: 0; 
+  text-align: left; 
 }
 
 .product-summary h2 {
   color: #333;
   font-size: 24px;
   margin: 0;
-  padding-left: 0; /* Убираем внутренний отступ */
+  padding-left: 0; 
 
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+  grid-template-columns: repeat(4, 1fr); /* 4 колонки товаров */
   gap: 20px;
 
 }
