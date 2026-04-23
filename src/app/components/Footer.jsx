@@ -16,13 +16,13 @@ function Footer() {
 
         {/* Колонка 2: Support */}
         <div className="footer-column">
-          <h4>Support</h4>
-          <ul>
-            <li><a href="/faq">FAQ</a></li>
-            <li><a href="/shipping">Shipping</a></li>
-            <li><a href="/returns">Returns</a></li>
-            <li><a href="/contact">Contact </a></li>
-          </ul>
+            <h4>Support</h4>
+             <ul>
+                <li><a href="#" onClick={(e) => e.preventDefault()}>FAQ</a></li>
+                <li><a href="#" onClick={(e) => e.preventDefault()}>Shipping</a></li>
+                <li><a href="#" onClick={(e) => e.preventDefault()}>Returns</a></li>
+                <li><a href="#" onClick={(e) => e.preventDefault()}>Contact</a></li>
+            </ul>
         </div>
 
          {/* Колонка 3: Legal */}
@@ -44,7 +44,7 @@ function Footer() {
               placeholder="Enter your email" 
               required 
             />
-            <button type="submit">Subscribe</button>
+            <button type="button" onClick={(e) => e.preventDefault()}>Subscribe</button>
           </form>
         </div>
 

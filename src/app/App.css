@@ -182,3 +182,15 @@
     border-right-color: var(--border);
   }
 }
+
+/* Прижимаем футер к низу */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app > div:first-child { 
+  flex: 1;
+}
+
