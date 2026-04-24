@@ -7,9 +7,9 @@ function Header() {
       <div className="header-left">
         <h1 className="logo">TechStore</h1>
         <nav className="header-nav">
-          <a href="/tv" className="nav-link">TV</a>
-          <a href="/phone" className="nav-link">Phone</a>
-          <a href="/laptop" className="nav-link">Laptop</a>
+          <a href="#" className="nav-link">TV</a>
+          <a href="#" className="nav-link">Phone</a>
+          <a href="#" className="nav-link">Laptop</a>
         </nav>
       </div>
 
