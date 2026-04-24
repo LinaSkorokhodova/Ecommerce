@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from '../components/Header'
 import products from '../../data/products'
+import ProductCard from '../components/ProductCard'
 import './Home.css'
 
 function Home() {
@@ -14,7 +15,7 @@ function Home() {
 
   // 2. Товары только по категории TV (чтобы переменная tvProducts существовала)
   const tvProducts = products.filter(item => item.category === 'tv')
-  
+
   return (
     <div className="home-page">
       {/* Заголовок с логотипом и иконками */}
@@ -23,81 +24,78 @@ function Home() {
       <div className="page-layout">
 
         {/* 1. Структура левой колонки */}
-        <div className="left-column"> 
-        
-        {/* Левая колонка: Фильтры */}
-        <aside className="sidebar">
-          <h3>Filters</h3>
+        <div className="left-column">
 
-          {/* Фильтр по бренду */}
-          <div className="filter-group">
-            <label htmlFor="brand">Brand</label>
-            <select
-              id="brand"
-              value={selectedBrand}
-              onChange={(e) => setSelectedBrand(e.target.value)}
-            >
-              {/* 2. Пустая область выпадающего списка */}
-              <option value="" disabled hidden></option>
+          {/* Левая колонка: Фильтры */}
+          <aside className="sidebar">
+            <h3>Filters</h3>
 
-             {uniqueBrands.map(brand => (
-                <option key={brand} value={brand}>{brand}</option>
-              ))}
-            </select>
-          </div>
+            {/* Фильтр по бренду */}
+            <div className="filter-group">
+              <label htmlFor="brand">Brand</label>
+              <select
+                id="brand"
+                value={selectedBrand}
+                onChange={(e) => setSelectedBrand(e.target.value)}
+              >
+                {/* 2. Пустая область выпадающего списка */}
+                <option value="" disabled hidden></option>
 
-
-          {/* Фильтр по цене */}
-          <div className="filter-group">
-            <label>Price Range</label>
-            <div className="price-inputs">
-              <input
-                type="text"
-                placeholder="$0"
-                value={minPrice}
-                onChange={(e) => setMinPrice(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="$5,000"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)}
-              />
+                {uniqueBrands.map(brand => (
+                  <option key={brand} value={brand}>{brand}</option>
+                ))}
+              </select>
             </div>
-          </div>
 
-          {/* Кнопка Apply (без функционала) */}
-          <button className="apply-btn">Apply Filters</button>
-        </aside>
 
-              {/* 2. Баннер Special Deal (отдельный блок под фильтрами) */}
+            {/* Фильтр по цене */}
+            <div className="filter-group">
+              <label>Price Range</label>
+              <div className="price-inputs">
+                <input
+                  type="text"
+                  placeholder="$0"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="$5,000"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* Кнопка Apply (без функционала) */}
+            <button className="apply-btn">Apply Filters</button>
+          </aside>
+
+          {/* 2. Баннер Special Deal (отдельный блок под фильтрами) */}
           <div className="special-deal-banner">
             <h4> Special Deal</h4>
             <p className="deal-timer">Offer expires in: <strong>0:59:59</strong></p>
           </div>
-              
-              </div>
-        
-        
+
+        </div>
+
+
         {/* Правая колонка: Товары */}
         <main className="content">
-          <div className="product-summary">
-            <h2>{tvProducts.length} Products</h2>
+          <div className="products-header">
+            <span className="products-count">{tvProducts.length} Products</span>
+            <div className="sort-container">
+              <label htmlFor="sort-select" className="sort-label">Sort by:</label>
+              <select id="sort-select" className="sort-dropdown">
+                <option value="">Price: High to Low</option>
+                <option value="">Price: Low to High</option>
+              </select>
+            </div>
           </div>
 
           <div className="product-grid">
             {tvProducts.map(item => (
-              <div key={item.id} className="product-card">
-                
-                {/* Название бренда */}
-                <p className="product-brand">{item.make}</p>
-
-                {/* Модель */}
-                <p className="product-model">{item.model}</p>
-
-                {/* Цена */}
-                <p className="product-price">${item.price.toLocaleString()}</p>
-              </div>
+              <ProductCard key={item.id} product={item} />
             ))}
           </div>
         </main>

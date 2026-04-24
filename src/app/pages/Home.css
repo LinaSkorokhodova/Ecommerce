@@ -114,7 +114,6 @@
   min-width: 0;       
 }
 
-
   .price-inputs input::placeholder {
   color: #999;
 }
@@ -229,4 +228,43 @@ product-model {
   color: #666;
 }
 
+/* ===== Панель сортировки, над сеткой товаров ===== */
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 0 16px;
+}
 
+.products-count {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-label {
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+.sort-dropdown {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.sort-dropdown:hover {
+  border-color: #aaa;
+}
