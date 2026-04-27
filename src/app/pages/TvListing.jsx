@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import Header from '../components/Header'
 import products from '../../data/products'
 import ProductCard from '../components/ProductCard'
-import './Home.css'
+import './TvListing.css'
 
-function Home() {
+function TvListing({ cart, addToCart }) {
   // Состояние для фильтров (без функционала)
   const [selectedBrand, setSelectedBrand] = useState('')
   const [minPrice, setMinPrice] = useState('')
@@ -19,7 +18,6 @@ function Home() {
   return (
     <div className="home-page">
       {/* Заголовок с логотипом и иконками */}
-      <Header />
 
       <div className="page-layout">
 
@@ -104,4 +102,4 @@ function Home() {
   )
 }
 
-export default Home
+export default TvListing
