@@ -3,7 +3,7 @@ import products from '../../data/products'
 import ProductCard from '../components/ProductCard'
 import './TvListing.css'
 
-function TvListing({ cart, addToCart }) {
+function TvListing({ cart, addToCart, updateQuantity }) {
   // Состояние для фильтров (без функционала)
   const [selectedBrand, setSelectedBrand] = useState('')
   const [minPrice, setMinPrice] = useState('')
@@ -93,7 +93,13 @@ function TvListing({ cart, addToCart }) {
 
           <div className="product-grid">
             {tvProducts.map(item => (
-              <ProductCard key={item.id} product={item} />
+              <ProductCard 
+              key={item.id} 
+              product={item} 
+              addToCart={addToCart} // передаем функцию добавления
+              quantityInCart={cart[item.id] || 0} // передаем текущее кол-во из глобальной корзины
+              updateQuantity= {updateQuantity}
+              />
             ))}
           </div>
         </main>
