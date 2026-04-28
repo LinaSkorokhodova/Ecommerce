@@ -55,7 +55,7 @@
 }
 
 .icon-btn {
-  background: none;
+  position: relative; /* Без этого не будет позиционирования количества товаров */
   border: none;
   font-size: 24px;
   cursor: pointer;

@@ -7,14 +7,38 @@ function TvListing({ cart, addToCart, updateQuantity }) {
   // Состояние для фильтров (без функционала)
   const [selectedBrand, setSelectedBrand] = useState('')
   const [minPrice, setMinPrice] = useState('')
-  const [maxPrice, setMaxPrice] = useState('')
+  const [maxPrice, setMaxPrice] = useState('5000')
 
-  // 1. Вычисляем уникальные бренды из данных
+  const [activeBrand, setActiveBrand] = useState('')
+  const [activeMinPrice, setActiveMinPrice] = useState('')
+  const [activeMaxPrice, setActiveMaxPrice] = useState('5000')
+  
+  // 1. Вычисляет уникальные бренды из данных
   const uniqueBrands = [...new Set(products.map(p => p.make))]
 
   // 2. Товары только по категории TV (чтобы переменная tvProducts существовала)
   const tvProducts = products.filter(item => item.category === 'tv')
 
+  // 3. Создает новый список на основе активных фильтров
+    const filteredTvProducts = tvProducts.filter(item => {
+    // Если бренд выбран и он не совпадает с товаром - пропускаем
+    if (activeBrand && item.make !== activeBrand) return false
+    // Если мин. цена указана и товар дешевле - пропускаем
+    if (activeMinPrice !== '' && item.price < Number(activeMinPrice)) return false
+    // Если макс. цена указана и товар дороже - пропускаем
+    if (activeMaxPrice !== '' && item.price > Number(activeMaxPrice)) return false
+    
+    return true // Товар подходит
+    })
+  
+  // --- Обработчик кнопки APPLY FILTERS ---
+  const handleApplyFilters = () => {
+    // Переносим значения из инпутов в активные фильтры
+    setActiveBrand(selectedBrand)
+    setActiveMinPrice(minPrice)
+    setActiveMaxPrice(maxPrice)
+  }
+  
   return (
     <div className="home-page">
       {/* Заголовок с логотипом и иконками */}
@@ -66,7 +90,7 @@ function TvListing({ cart, addToCart, updateQuantity }) {
             </div>
 
             {/* Кнопка Apply (без функционала) */}
-            <button className="apply-btn">Apply Filters</button>
+            <button className="apply-btn" onClick={handleApplyFilters}>Apply Filters</button>
           </aside>
 
           {/* 2. Баннер Special Deal (отдельный блок под фильтрами) */}
@@ -81,7 +105,7 @@ function TvListing({ cart, addToCart, updateQuantity }) {
         {/* Правая колонка: Товары */}
         <main className="content">
           <div className="products-header">
-            <span className="products-count">{tvProducts.length} Products</span>
+            <span className="products-count">{filteredTvProducts.length} Products</span>
             <div className="sort-container">
               <label htmlFor="sort-select" className="sort-label">Sort by:</label>
               <select id="sort-select" className="sort-dropdown">
@@ -92,7 +116,7 @@ function TvListing({ cart, addToCart, updateQuantity }) {
           </div>
 
           <div className="product-grid">
-            {tvProducts.map(item => (
+            {filteredTvProducts.map(item => (
               <ProductCard 
               key={item.id} 
               product={item} 

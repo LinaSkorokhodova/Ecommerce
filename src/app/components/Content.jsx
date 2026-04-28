@@ -1,11 +1,10 @@
-import React from 'react';
-import TvListing from '../pages/TvListing';
-import PhoneListing from '../pages/PhoneListing';
-import LaptopListing from '../pages/LaptopListing';
-import Cart from '../pages/Cart';
+import React from "react";
+import TvListing from "../pages/TvListing";
+import PhoneListing from "../pages/PhoneListing";
+import LaptopListing from "../pages/LaptopListing";
+import Cart from "../pages/Cart";
 
 const Content = ({ pageType, setPageType, cart, setCart }) => {
-
   // добавляем товар
   function handleAddToCart(productId) {
     // берем текущую корзину
@@ -49,8 +48,9 @@ const Content = ({ pageType, setPageType, cart, setCart }) => {
   return (
     <>
       {/* Если открыта страница TV */}
-      {pageType === 'tv' && (
+      {pageType === "tv" && (
         <TvListing
+          key="tv-listing"
           cart={cart}
           addToCart={handleAddToCart}
           updateQuantity={handleUpdateQuantity}
@@ -58,10 +58,29 @@ const Content = ({ pageType, setPageType, cart, setCart }) => {
         />
       )}
 
+      {pageType === "phone" && (
+        <PhoneListing
+          key="phone-listing"
+          cart={cart}
+          addToCart={handleAddToCart}
+          updateQuantity={handleUpdateQuantity}
+          setPageType={setPageType}
+        />
+      )}
 
-      {pageType === 'phone' && <PhoneListing cart={cart} setCart={setCart} />}
-      {pageType === 'laptop' && <LaptopListing cart={cart} setCart={setCart} />}
-      {pageType === 'cart' && <Cart cart={cart} setCart={setCart} setPageType={setPageType} />}
+      {pageType === "laptop" && (
+        <LaptopListing
+          key="laptop-listing"
+          cart={cart}
+          addToCart={handleAddToCart}
+          updateQuantity={handleUpdateQuantity}
+          setPageType={setPageType}
+        />
+      )}
+
+      {pageType === "cart" && (
+        <Cart cart={cart} setCart={setCart} setPageType={setPageType} />
+      )}
     </>
   );
 };
