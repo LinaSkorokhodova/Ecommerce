@@ -5,15 +5,42 @@ import { sortProducts } from "../utils/ProductSort";
 import "./LaptopListing.css";
 
 function LaptopListing({ cart, addToCart, updateQuantity }) {
+  /* черновики для ввода*/
   const [selectedBrand, setSelectedBrand] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("5000");
 
+  /* для примененных фильтров */
+  const [activeBrand, setActiveBrand] = useState("");
+  const [activeMinPrice, setActiveMinPrice] = useState("");
+  const [activeMaxPrice, setActiveMaxPrice] = useState("5000");
+
+  /* состояние для сортировки */
   const [sortType, setSortType] = useState("low-high");
-  
+
+  /* фильтрация по laptop */
   const laptopProducts = products.filter((item) => item.category === "laptop");
   const uniqueBrands = [...new Set(laptopProducts.map((p) => p.make))];
-  const sortedProducts = sortProducts(laptopProducts, sortType);
+
+  /* применяем активные фильтры к списку */
+  const filteredProducts = laptopProducts.filter((item) => {
+    if (activeBrand && item.make !== activeBrand) return false;
+    if (activeMinPrice !== "" && item.price < Number(activeMinPrice))
+      return false;
+    if (activeMaxPrice !== "" && item.price > Number(activeMaxPrice))
+      return false;
+    return true;
+  });
+
+  /* сортируем отфильтрованный список */
+  const sortedProducts = sortProducts(filteredProducts, sortType);
+
+  /* обработчик кнопки apply */
+  const handleApplyFilters = () => {
+    setActiveBrand(selectedBrand);
+    setActiveMinPrice(minPrice);
+    setActiveMaxPrice(maxPrice);
+  };
 
   return (
     <div className="home-page">
@@ -56,7 +83,9 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
                 />
               </div>
             </div>
-            <button className="apply-btn">Apply Filters</button>
+            <button className="apply-btn" onClick={handleApplyFilters}>
+              Apply Filters
+            </button>
           </aside>
 
           <div className="special-deal-banner">
