@@ -1,29 +1,31 @@
-import { useState } from 'react'
-import products from '../../data/products'
-import ProductCard from '../components/ProductCard'
-import './PhoneListing.css'
+import { useState } from "react";
+import products from "../../data/products";
+import ProductCard from "../components/ProductCard";
+import { sortProducts } from "../utils/ProductSort";
+import "./PhoneListing.css";
 
 function PhoneListing({ cart, addToCart, updateQuantity }) {
   // Состояние для фильтров (без функционала)
-  const [selectedBrand, setSelectedBrand] = useState('')
-  const [minPrice, setMinPrice] = useState('')
-  const [maxPrice, setMaxPrice] = useState('')
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("5000");
 
-  // 1. Вычисляем уникальные бренды из данных
-  const uniqueBrands = [...new Set(products.map(p => p.make))]
+  // Товары только по категории TV (чтобы переменная tvProducts существовала)
+  const phoneProducts = products.filter((item) => item.category === "phone");
 
-  // 2. Товары только по категории TV (чтобы переменная tvProducts существовала)
-  const phoneProducts = products.filter(item => item.category === 'phone')
+  const uniqueBrands = [...new Set(phoneProducts.map((p) => p.make))];
+
+  const [sortType, setSortType] = useState("low-high");
+
+  const sortedProducts = sortProducts(phoneProducts, sortType);
 
   return (
     <div className="home-page">
       {/* Заголовок с логотипом и иконками */}
 
       <div className="page-layout">
-
         {/* 1. Структура левой колонки */}
         <div className="left-column">
-
           {/* Левая колонка: Фильтры */}
           <aside className="sidebar">
             <h3>Filters</h3>
@@ -39,12 +41,13 @@ function PhoneListing({ cart, addToCart, updateQuantity }) {
                 {/* 2. Пустая область выпадающего списка */}
                 <option value="" disabled hidden></option>
 
-                {uniqueBrands.map(brand => (
-                  <option key={brand} value={brand}>{brand}</option>
+                {uniqueBrands.map((brand) => (
+                  <option key={brand} value={brand}>
+                    {brand}
+                  </option>
                 ))}
               </select>
             </div>
-
 
             {/* Фильтр по цене */}
             <div className="filter-group">
@@ -72,41 +75,50 @@ function PhoneListing({ cart, addToCart, updateQuantity }) {
           {/* 2. Баннер Special Deal (отдельный блок под фильтрами) */}
           <div className="special-deal-banner">
             <h4> Special Deal</h4>
-            <p className="deal-timer">Offer expires in: <strong>0:59:59</strong></p>
+            <p className="deal-timer">
+              Offer expires in: <strong>0:59:59</strong>
+            </p>
           </div>
-
         </div>
-
 
         {/* Правая колонка: Товары */}
         <main className="content">
           <div className="products-header">
-            <span className="products-count">{phoneProducts.length} Products</span>
-            
+            <span className="products-count">
+              {sortedProducts.length} Products
+            </span>
+
             <div className="sort-container">
-              <label htmlFor="sort-select" className="sort-label">Sort by:</label>
-              <select id="sort-select" className="sort-dropdown">
-                <option value="">Price: High to Low</option>
-                <option value="">Price: Low to High</option>
+              <label htmlFor="sort-select" className="sort-label">
+                Sort by:
+              </label>
+              <select
+                id="sort-select"
+                className="sort-dropdown"
+                value={sortType}
+                onChange={(e) => setSortType(e.target.value)}
+              >
+                <option value="high-low">Price: High to Low</option>
+                <option value="low-high">Price: Low to High</option>
               </select>
             </div>
           </div>
 
           <div className="product-grid">
-            {phoneProducts.map(item => (
-              <ProductCard 
-              key={item.id} 
-              product={item} 
-              addToCart={addToCart} // передаем функцию добавления
-              quantityInCart={cart[item.id] || 0} // передаем текущее кол-во из глобальной корзины
-              updateQuantity= {updateQuantity}
+            {sortedProducts.map((item) => (
+              <ProductCard
+                key={item.id}
+                product={item}
+                addToCart={addToCart} // передаем функцию добавления
+                quantityInCart={cart[item.id] || 0} // передаем текущее кол-во из глобальной корзины
+                updateQuantity={updateQuantity}
               />
             ))}
           </div>
         </main>
       </div>
     </div>
-  )
+  );
 }
 
-export default PhoneListing
+export default PhoneListing;
