@@ -100,7 +100,7 @@ function TvListing({ cart, addToCart, updateQuantity }) {
               </div>
             </div>
 
-            {/* Кнопка Apply (без функционала) */}
+            {/* Кнопка Apply */}
             <button className="apply-btn" onClick={handleApplyFilters}>
               Apply Filters
             </button>

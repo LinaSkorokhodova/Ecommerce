@@ -89,7 +89,7 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
           </aside>
 
           <div className="special-deal-banner">
-            <h4>🔥 Special Deal</h4>
+            <h4>Special Deal</h4>
             <p className="deal-timer">
               Offer expires in: <strong>0:59:59</strong>
             </p>
