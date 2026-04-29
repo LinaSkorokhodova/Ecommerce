@@ -78,8 +78,8 @@
     margin: 0 0 8px 0;
     line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /*ставим ограничение в 2 строки*/
-    -webkit-box-orient: vertical;
+    -line-clamp: 2; /*ставим ограничение в 2 строки*/
+    -box-orient: vertical;
     overflow: hidden;
     min-height: 44px;
     text-align: left;
