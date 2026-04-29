@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header'
 import Content from './Content'; 
 import Footer from './Footer';
 
 const Container = () => {
-  // 1. Состояние текущей страницы.
+  // Состояние текущей страницы.
   // Открывается витрина телевизоров ('tv').
   const [pageType, setPageType] = useState('tv');
-
    
-   // 2. Состояние корзины.
-   // Храним как объект: { productId: quantity }.
-  // Пустой объект {} означает пустую корзину.
-  const [cart, setCart] = useState({});
+  // При первом запуске берем корзину из памяти браузера
+  const [cart, setCart] = useState(() => {
+    const savedCart = sessionStorage.getItem('techStoreCart');
+    return savedCart ? JSON.parse(savedCart) : {};
+  });
+
+  // При изменении корзины сохраняем ее в память
+  useEffect(() => {
+    sessionStorage.setItem(
+      'techStoreCart',
+      JSON.stringify(cart));
+  }, [cart]);
 
     return (
     <div className="app-container">

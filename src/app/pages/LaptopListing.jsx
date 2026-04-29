@@ -1,11 +1,11 @@
-import { useState } from "react";
-import products from "../../data/products";
-import ProductCard from "../components/ProductCard";
-import { sortProducts } from "../utils/ProductSort";
-import "./LaptopListing.css";
+import { useState } from 'react';
+import products from '../../data/products';
+import ProductCard from '../components/ProductCard';
+import { sortProducts } from '../utils/ProductSort';
+import './LaptopListing.css';
 
 function LaptopListing({ cart, addToCart, updateQuantity }) {
-  /* черновики для ввода*/
+  /* черновики для ввода пользователем */
   const [selectedBrand, setSelectedBrand] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("5000");

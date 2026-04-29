@@ -1,23 +1,46 @@
-import { useState } from "react";
-import products from "../../data/products";
-import ProductCard from "../components/ProductCard";
-import { sortProducts } from "../utils/ProductSort";
-import "./PhoneListing.css";
+import { useState } from 'react';
+import products from '../../data/products';
+import ProductCard from '../components/ProductCard';
+import { sortProducts } from '../utils/ProductSort';
+import './PhoneListing.css';
 
 function PhoneListing({ cart, addToCart, updateQuantity }) {
-  // Состояние для фильтров (без функционала)
+  /* черновики для ввода*/
   const [selectedBrand, setSelectedBrand] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("5000");
 
-  // Товары только по категории TV (чтобы переменная tvProducts существовала)
-  const phoneProducts = products.filter((item) => item.category === "phone");
+  /* для примененных фильтров */
+  const [activeBrand, setActiveBrand] = useState("");
+  const [activeMinPrice, setActiveMinPrice] = useState("");
+  const [activeMaxPrice, setActiveMaxPrice] = useState("5000");
 
-  const uniqueBrands = [...new Set(phoneProducts.map((p) => p.make))];
-
+  /* состояние для сортировки */
   const [sortType, setSortType] = useState("low-high");
 
-  const sortedProducts = sortProducts(phoneProducts, sortType);
+  /* фильтрация по phone */
+  const phoneProducts = products.filter((item) => item.category === "phone");
+  const uniqueBrands = [...new Set(phoneProducts.map((p) => p.make))];
+
+  /* применяем активные фильтры к списку */
+  const filteredProducts = phoneProducts.filter((item) => {
+    if (activeBrand && item.make !== activeBrand) return false;
+    if (activeMinPrice !== "" && item.price < Number(activeMinPrice))
+      return false;
+    if (activeMaxPrice !== "" && item.price > Number(activeMaxPrice))
+      return false;
+    return true;
+  });
+
+  /* сортируем отфильтрованный список */
+  const sortedProducts = sortProducts(filteredProducts, sortType);
+
+  /* обработчик кнопки apply */
+  const handleApplyFilters = () => {
+    setActiveBrand(selectedBrand);
+    setActiveMinPrice(minPrice);
+    setActiveMaxPrice(maxPrice);
+  };
 
   return (
     <div className="home-page">
@@ -39,7 +62,9 @@ function PhoneListing({ cart, addToCart, updateQuantity }) {
                 onChange={(e) => setSelectedBrand(e.target.value)}
               >
                 {/* 2. Пустая область выпадающего списка */}
-                <option value="" disabled hidden></option>
+                <option value="" disabled hidden>
+                  Select Brand
+                </option>
 
                 {uniqueBrands.map((brand) => (
                   <option key={brand} value={brand}>
@@ -69,7 +94,9 @@ function PhoneListing({ cart, addToCart, updateQuantity }) {
             </div>
 
             {/* Кнопка Apply (без функционала) */}
-            <button className="apply-btn">Apply Filters</button>
+            <button className="apply-btn" onClick={handleApplyFilters}>
+              Apply Filters
+            </button>
           </aside>
 
           {/* 2. Баннер Special Deal (отдельный блок под фильтрами) */}
@@ -98,8 +125,8 @@ function PhoneListing({ cart, addToCart, updateQuantity }) {
                 value={sortType}
                 onChange={(e) => setSortType(e.target.value)}
               >
-                <option value="high-low">Price: High to Low</option>
                 <option value="low-high">Price: Low to High</option>
+                <option value="high-low">Price: High to Low</option>
               </select>
             </div>
           </div>

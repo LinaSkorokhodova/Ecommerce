@@ -10,7 +10,12 @@ const Cart = ({ cart, setCart, setPageType }) => {
     return (
       <div className="cart-empty">
         <h2>Your cart is empty</h2>
-        <button onClick={() => setPageType('tv')}>Continue Shopping</button>
+        <button 
+          className="continue-shopping-btn" 
+          onClick={() => setPageType('tv')}
+        >
+          Continue Shopping
+        </button>
       </div>
     );
   }
@@ -53,6 +58,7 @@ const Cart = ({ cart, setCart, setPageType }) => {
             
             <div className="info">
               <div>{item.make} {item.model}</div>
+              { /* цена без 'копеек' */ }
               <div>${item.price.toLocaleString()}</div>
             </div>
             
