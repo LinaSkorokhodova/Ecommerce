@@ -2,7 +2,9 @@ import { useState } from 'react';
 import products from '../../data/products';
 import ProductCard from '../components/ProductCard';
 import { sortProducts } from '../utils/ProductSort';
+import LiveTimer from '../components/LiveTimer';
 import './TvListing.css';
+
 
 function TvListing({ cart, addToCart, updateQuantity }) {
   /* черновики для ввода*/
@@ -17,6 +19,9 @@ function TvListing({ cart, addToCart, updateQuantity }) {
 
   /* состояние для сортировки */
   const [sortType, setSortType] = useState("low-high");
+   
+  /*состояние для отоборажения таймера */
+  const [showTimer, setShowTimer] = useState(true);
 
   /* фильтрация по TV */
   const tvProducts = products.filter((item) => item.category === "tv");
@@ -106,14 +111,10 @@ function TvListing({ cart, addToCart, updateQuantity }) {
             </button>
           </aside>
 
-          {/* 2. Баннер Special Deal (отдельный блок под фильтрами) */}
-          <div className="special-deal-banner">
-            <h4> Special Deal</h4>
-            <p className="deal-timer">
-              Offer expires in: <strong>0:59:59</strong>
-            </p>
-          </div>
+          {/* 2. Баннер Special Deal (живой таймер) */}
+          {showTimer && <LiveTimer onClose={() => setShowTimer(false)} />}
         </div>
+        
 
         {/* Правая колонка: Товары */}
         <main className="content">
