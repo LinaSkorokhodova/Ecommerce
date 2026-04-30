@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./LiveTimer.css";
 
 const LiveTimer = ({ onClose }) => {
-  const INITIAL_TIME = 59 * 60 + 59; // 59*60=3540 секунд + 59 секунд=3599
+  const INITIAL_TIME = 10;//59 * 60 + 59; // 59*60=3540 секунд + 59 секунд=3599
 
   const [timeLeft, setTimeLeft] = useState(INITIAL_TIME);
   const [isRunning, setIsRunning] = useState(true);
@@ -70,9 +70,9 @@ const LiveTimer = ({ onClose }) => {
   if (isFinished) {
     return (
       <div className="timer-finished">
-        <span>таймер истёк</span>
-        <button onClick={handleRestart} className="restart-btn">🔄 Рестарт</button>
-        <button onClick={handleClose} className="close-btn">❌</button>
+        <span>Таймер истёк</span>
+        <button onClick={handleRestart} className="restart-btn"> Рестарт</button>
+        <button onClick={handleClose} className="close-btn">×</button>
       </div>
     );
   }

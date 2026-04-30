@@ -47,7 +47,7 @@
 
 
 .timer-finished {
-  background-color: #e41818;
+  background-color: #ff4d4f;
   color: white;
   padding: 15px;
   border-radius: 8px;
@@ -65,15 +65,41 @@
 }
 
 .timer-finished .restart-btn {
-  background-color: #fff;
-  color: #000000;
-  font-weight: bold;
-  margin-right: 10px;
+  padding: 8px 12px;
+  border: 1px solid #070707;       
+  background-color: #000000;        /* Черный фон */
+  color: #ffffff;                  /* Белый текст */
+  border-radius: 6px;           
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;             
+  transition: all 0.2s ease;
+}
+
+.timer-finished .restart-btn:hover:not(:disabled) {
+  background-color: #2e2d2d;     
+  border-color: #050404;           
 }
 
 .timer-finished .close-btn {
-  background-color: transparent;
-  color: white;
-  font-size: 18px;
-  padding: 5px 10px;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border: 1px solid #000000;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+}
+
+
+.timer-finished .close-btn:hover:not(:disabled) {
+  background-color: #2e2d2d;     
+  border-color: #050404;           
 }
