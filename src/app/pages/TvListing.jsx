@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import products from '../../data/products';
-import ProductCard from '../components/ProductCard';
-import { sortProducts } from '../utils/ProductSort';
-import LiveTimer from '../components/LiveTimer';
-import './TvListing.css';
-
+import { useState } from "react";
+import products from "../../data/products";
+import ProductCard from "../components/ProductCard";
+import { sortProducts } from "../utils/ProductSort";
+import WeatherWidget from "../components/WeatherWidget";
+import LiveTimer from "../components/LiveTimer";
+import "./TvListing.css";
 
 function TvListing({ cart, addToCart, updateQuantity }) {
   /* черновики для ввода*/
@@ -19,7 +19,7 @@ function TvListing({ cart, addToCart, updateQuantity }) {
 
   /* состояние для сортировки */
   const [sortType, setSortType] = useState("low-high");
-   
+
   /*состояние для отоборажения таймера */
   const [showTimer, setShowTimer] = useState(true);
 
@@ -113,8 +113,10 @@ function TvListing({ cart, addToCart, updateQuantity }) {
 
           {/* 2. Баннер Special Deal (живой таймер) */}
           {showTimer && <LiveTimer onClose={() => setShowTimer(false)} />}
+
+          {/* Виджет погоды */}
+          <WeatherWidget />
         </div>
-        
 
         {/* Правая колонка: Товары */}
         <main className="content">
