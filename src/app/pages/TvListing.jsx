@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import products from '../../data/products';
-import ProductCard from '../components/ProductCard';
-import { sortProducts } from '../utils/ProductSort';
-import './TvListing.css';
+import { useState } from "react";
+import products from "../../data/products";
+import ProductCard from "../components/ProductCard";
+import { sortProducts } from "../utils/ProductSort";
+import WeatherWidget from "../components/WeatherWidget";
+import "./TvListing.css";
 
 function TvListing({ cart, addToCart, updateQuantity }) {
   /* черновики для ввода*/
@@ -113,6 +114,9 @@ function TvListing({ cart, addToCart, updateQuantity }) {
               Offer expires in: <strong>0:59:59</strong>
             </p>
           </div>
+
+          {/* Виджет погоды */}
+          <WeatherWidget />
         </div>
 
         {/* Правая колонка: Товары */}
