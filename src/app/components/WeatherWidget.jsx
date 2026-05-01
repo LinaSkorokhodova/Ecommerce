@@ -3,6 +3,7 @@ import "./WeatherWidget.css";
 
 const WeatherWidget = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   if (!isVisible) {
     return null;
@@ -13,7 +14,13 @@ const WeatherWidget = () => {
       <button className="close-btn" onClick={() => setIsVisible(false)}>
         ×
       </button>
-      <p>Здесь будет виджет погоды</p>
+
+      {/* Лоадер */}
+      {isLoading ? (
+        <div className="weather-loader">Загрузка...</div>
+      ) : (
+        <p>Здесь будет виджет погоды</p>
+      )}
     </div>
   );
 };

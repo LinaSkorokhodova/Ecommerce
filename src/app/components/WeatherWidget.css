@@ -22,3 +22,9 @@
 .close-btn:hover {
   color: #000;
 }
+
+.weather-loader {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
