@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import products from '../../data/products';
-import ProductCard from '../components/ProductCard';
-import { sortProducts } from '../utils/ProductSort';
-import './LaptopListing.css';
+import { useState } from "react";
+import products from "../../data/products";
+import ProductCard from "../components/ProductCard";
+import { sortProducts } from "../utils/ProductSort";
+import WeatherWidget from "../components/WeatherWidget";
+import LiveTimer from "../components/LiveTimer";
+import "./LaptopListing.css";
 
 function LaptopListing({ cart, addToCart, updateQuantity }) {
   /* черновики для ввода пользователем */
@@ -17,6 +19,9 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
 
   /* состояние для сортировки */
   const [sortType, setSortType] = useState("low-high");
+
+  /*состояние для отображения таймера */
+  const [showTimer, setShowTimer] = useState(true);
 
   /* фильтрация по laptop */
   const laptopProducts = products.filter((item) => item.category === "laptop");
@@ -44,11 +49,16 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
 
   return (
     <div className="home-page">
+      {/* Заголовок с логотипом и иконками */}
+
       <div className="page-layout">
+        {/* 1. Структура левой колонки */}
         <div className="left-column">
+          {/* Левая колонка: Фильтры */}
           <aside className="sidebar">
             <h3>Filters</h3>
 
+            {/* Фильтр по бренду */}
             <div className="filter-group">
               <label htmlFor="brand">Brand</label>
               <select
@@ -56,6 +66,7 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
                 value={selectedBrand}
                 onChange={(e) => setSelectedBrand(e.target.value)}
               >
+                {/* Пустая область выпадающего списка */}
                 <option value="" disabled hidden>
                   Select Brand
                 </option>
@@ -66,6 +77,8 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
                 ))}
               </select>
             </div>
+
+            {/* Фильтр по цене */}
             <div className="filter-group">
               <label>Price Range</label>
               <div className="price-inputs">
@@ -83,19 +96,21 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
                 />
               </div>
             </div>
+
+            {/* Кнопка Apply */}
             <button className="apply-btn" onClick={handleApplyFilters}>
               Apply Filters
             </button>
           </aside>
 
-          <div className="special-deal-banner">
-            <h4>Special Deal</h4>
-            <p className="deal-timer">
-              Offer expires in: <strong>0:59:59</strong>
-            </p>
-          </div>
+          {/* Баннер Special Deal (отдельный блок под фильтрами) */}
+          {showTimer && <LiveTimer onClose={() => setShowTimer(false)} />}
+
+          {/* Виджет погоды */}
+          <WeatherWidget />
         </div>
 
+        {/* Правая колонка: Товары */}
         <main className="content">
           <div className="products-header">
             <span className="products-count">
