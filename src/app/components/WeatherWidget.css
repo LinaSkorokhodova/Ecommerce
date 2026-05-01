@@ -1,4 +1,5 @@
 .weather-widget {
+  margin-top: 20px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -6,6 +7,20 @@
   max-width: 300px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: relative;
+}
+
+.weather-icon-container {
+  display: inline-block;
+  background-color: #333;
+  border-radius: 20%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.weather-icon-container img {
+  width: 60px;
+  height: 60px;
+  display: block;
 }
 
 .close-btn {
@@ -40,4 +55,43 @@
 
 .geo-error {
   border-left: 3px solid #c62828;
+}
+
+.search-box {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-box input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.search-box button {
+  padding: 8px 12px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.search-box button:hover:not(:disabled) {
+  background-color: rgb(66, 66, 66);
+}
+
+.search-box button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
