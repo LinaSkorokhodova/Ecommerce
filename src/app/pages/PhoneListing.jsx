@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import products from '../../data/products';
-import ProductCard from '../components/ProductCard';
-import { sortProducts } from '../utils/ProductSort';
-import LiveTimer from '../components/LiveTimer';
-import './PhoneListing.css';
+import { useState } from "react";
+import products from "../../data/products";
+import ProductCard from "../components/ProductCard";
+import { sortProducts } from "../utils/ProductSort";
+import WeatherWidget from "../components/WeatherWidget";
+import LiveTimer from "../components/LiveTimer";
+import "./PhoneListing.css";
 
 function PhoneListing({ cart, addToCart, updateQuantity }) {
   /* черновики для ввода*/
@@ -104,7 +105,10 @@ function PhoneListing({ cart, addToCart, updateQuantity }) {
           </aside>
 
           {/* 2. Баннер Special Deal (отдельный блок под фильтрами) */}
-           {showTimer && <LiveTimer onClose={() => setShowTimer(false)} />}
+          {showTimer && <LiveTimer onClose={() => setShowTimer(false)} />}
+
+          {/* Виджет погоды */}
+          <WeatherWidget />
         </div>
 
         {/* Правая колонка: Товары */}

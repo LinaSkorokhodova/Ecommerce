@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import products from '../../data/products';
-import ProductCard from '../components/ProductCard';
-import { sortProducts } from '../utils/ProductSort';
-import LiveTimer from '../components/LiveTimer';
-import './LaptopListing.css';
+import { useState } from "react";
+import products from "../../data/products";
+import ProductCard from "../components/ProductCard";
+import { sortProducts } from "../utils/ProductSort";
+import WeatherWidget from "../components/WeatherWidget";
+import LiveTimer from "../components/LiveTimer";
+import "./LaptopListing.css";
 
 function LaptopListing({ cart, addToCart, updateQuantity }) {
   /* черновики для ввода пользователем */
@@ -18,8 +19,8 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
 
   /* состояние для сортировки */
   const [sortType, setSortType] = useState("low-high");
-  
-  /*состояние для отображения таймера */ 
+
+  /*состояние для отображения таймера */
   const [showTimer, setShowTimer] = useState(true);
 
   /* фильтрация по laptop */
@@ -49,7 +50,7 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
   return (
     <div className="home-page">
       {/* Заголовок с логотипом и иконками */}
-      
+
       <div className="page-layout">
         {/* 1. Структура левой колонки */}
         <div className="left-column">
@@ -95,16 +96,18 @@ function LaptopListing({ cart, addToCart, updateQuantity }) {
                 />
               </div>
             </div>
-            
+
             {/* Кнопка Apply */}
             <button className="apply-btn" onClick={handleApplyFilters}>
               Apply Filters
             </button>
           </aside>
 
-
           {/* Баннер Special Deal (отдельный блок под фильтрами) */}
-           {showTimer && <LiveTimer onClose={() => setShowTimer(false)} />}
+          {showTimer && <LiveTimer onClose={() => setShowTimer(false)} />}
+
+          {/* Виджет погоды */}
+          <WeatherWidget />
         </div>
 
         {/* Правая колонка: Товары */}
